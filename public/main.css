@@ -8,12 +8,18 @@ header {
     justify-content: center;
 
 }
-h1 {
-    border-style: ridge;
+.annonce {
+    border-style: inset;
+    box-shadow: 6px 6px 0px black;
+    margin: 1%;
+    padding: 2%;
 }
-p {
-    color: darkred;
+.green {
+    color: green;
 }
-button {
-    color: forestgreen;
+.red {
+    color: red;
 }
+.animate__animated.animate__backInLeft {
+    --animate-duration: 3s;
+  }

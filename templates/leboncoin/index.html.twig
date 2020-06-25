@@ -4,10 +4,10 @@
 
 {% block body %}
 <header>
-<h1> Welcome to our online announcement site ! </h1>
+<h1 class="animate__animated animate__backInLeft">Welcome to our online announcement site ! </h1>
 </header>
 {% for annonce in annonces %}
-<div>
+<div class="annonce">
 <a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
 <h2> 
 {{annonce.title}} 
@@ -31,11 +31,11 @@ Posted by :
 {% if app.user and app.user == annonce.author %}
 <p>
 <a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
-<button>Delete</button></a>
+<button class="red">Delete</button></a>
 </p>
 <p>
 <a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
-<button>Edit</button></a>
+<button class="green">Edit</button></a>
 </p>
 {% endif %}
 </div>

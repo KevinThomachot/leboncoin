@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LeboncoinController extends AbstractController
 {
     /**
-     * @Route("/index", name="leboncoin_index")
+     * @Route("/", name="leboncoin_index")
      */
     public function index()
     {
@@ -29,8 +29,11 @@ class LeboncoinController extends AbstractController
      */
     public function add(Request $request)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
         $annonces = new Annonces();
         $annonces->setCreatedOn(new \DateTime);
+        $user = $this->getUser();
+        $annonces->setAuthor($user);
 
         $form = $this->createFormBuilder($annonces)
         ->add('title', TextType::class)

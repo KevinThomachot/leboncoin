@@ -4,16 +4,19 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="{{asset('main.css')}}">
     </head>
     <body>
     <nav>
     <ul>
-     <li><a href="{{path('leboncoin_add')}}">Write an ad</a></li>
      <li><a href="{{path('leboncoin_index')}}">Home page</a></li>
-     <li><a href="{{path('leboncoin_register')}}">Sign up</a></li>
-     <li><a href="{{path('leboncoin_login')}}">Sign in</a></li>
+     <li><a href="{{path('leboncoin_add')}}">Write an ad</a></li>
+     {% if app.user %}
      <li><a href="{{path('leboncoin_logout')}}">Logout</a></li>
+     {% else %}
+          <li><a href="{{path('leboncoin_register')}}">Sign up</a></li>
+     <li><a href="{{path('leboncoin_login')}}">Sign in</a></li>
+     {% endif %}
     </ul>
     </nav>
         {% block body %}{% endblock %}

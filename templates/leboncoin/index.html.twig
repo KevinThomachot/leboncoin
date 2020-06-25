@@ -13,7 +13,7 @@
 </a>
 <h3> 
 Posted the :
-{{annonce.createdOn | date('d/m/Y h:i')}} 
+{{annonce.createdOn | date('d/m/Y h:i:s')}} 
 </h3>
 <p>
 {{annonce.content}}
@@ -24,11 +24,10 @@ Price :
 </p>
 <p>
 Posted by :
-{% if annonces.author %}
-{{annonces.author}} 
-{% else %}
-Anonyme        
+{% if annonce.author %}
+  {{annonce.author.username}}        
 {% endif %}
+{% if app.user and app.user == annonce.author %}
 </p>
 <a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
 <button>Delete</button>
@@ -36,6 +35,7 @@ Anonyme
 <a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
 <button>Edit</button>
 </p>
+{% endif %}
 </div>
 {% endfor %}
 {% endblock %}

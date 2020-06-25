@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="{{asset('main.css')}}">
     </head>
     <body>
+    {% if app.user %}
+    Bienvenue {{app.user.username}} !
+    {% endif %}
     <nav>
     <ul>
      <li><a href="{{path('leboncoin_index')}}">Home page</a></li>

@@ -3,6 +3,20 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+header {
+    display: flex;
+    justify-content: center;
+
+}
 h1 {
-    text-align: center;
+    border-style: ridge;
+}
+p {
+    color: darkred;
+}
+button {
+    color: forestgreen;
+}
+.del {
+    color: red;
 }

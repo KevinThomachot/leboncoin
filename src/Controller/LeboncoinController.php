@@ -19,7 +19,7 @@ class LeboncoinController extends AbstractController
     public function index()
     {
         $annonceRepository = $this->getDoctrine()->getRepository(Annonces::class);
-        $annonces = $annonceRepository->findAll();
+        $annonces = $annonceRepository->findBy([], ['created_on' => 'ASC']);
 
         return $this->render('leboncoin/index.html.twig', ['annonces' => $annonces]);
     }
@@ -99,7 +99,7 @@ class LeboncoinController extends AbstractController
         return $this->redirectToRoute('leboncoin_annonce', ['id' => $annonce->getId()]);
 
         }
-        
+
         return $this->render('leboncoin/edit.html.twig', ['editForm' => $form->createView()]);
     }
 }

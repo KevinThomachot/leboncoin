@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home page{% endblock %}
+
+{% block body %}
+<h1> Welcome to our online announcement site! </h1>
+{% for annonce in annonces %}
+<div>
+<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
+<h2> 
+{{annonce.title}} 
+</h2>
+</a>
+<h3> 
+Posted the :
+{{annonce.createdOn | date('d/m/Y h:i')}} 
+</h3>
+<p>
+{{annonce.content}}
+</p>
+<p>
+Price :
+{{annonce.price}}€
+</p>
+</div>
+{% endfor %}
+{% endblock %}

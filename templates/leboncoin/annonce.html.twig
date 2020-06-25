@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Announcement page{% endblock %}
+
+{% block body %}
+<h1> Your Ads </h1>
+<div>
+<h2> 
+{{annonce.title}} 
+</h2>
+</a>
+<h3> 
+Posted the :
+{{annonce.createdOn | date('d/m/Y h:i')}} 
+</h3>
+<p>
+{{annonce.content}}
+</p>
+<p>
+Price :
+{{annonce.price}}€
+<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
+<button>Delete</button>
+</a>
+<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
+<button>Edit</button>
+</p>
+</div>
+{% endblock %}

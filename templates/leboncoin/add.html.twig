@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Write an ad {% endblock %}
+{% block title %}
+	Write an ad
+{% endblock %}
 
 {% block body %}
-<header>
-<h1> Write your ad </h1>
-</header>
-    {{ form(addForm) }}
-{% endblock %}
+	<header>
+		<h1>
+			Write your ad
+		</h1>
+	</header>
+	{{ form(addForm) }}{% endblock %}
+

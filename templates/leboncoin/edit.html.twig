@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Modifiez votre annonce {% endblock %}
+{% block title %}
+	Modifiez votre annonce
+{% endblock %}
 
 {% block body %}
-<header>
-<h1> Modifiez votre annonce </h1>
-</header>
-    {{ form(editForm) }}
-{% endblock %}
+	<header>
+		<h1>
+			Modifiez votre annonce
+		</h1>
+	</header>
+	{{ form(editForm) }}{% endblock %}

@@ -1,43 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home page{% endblock %}
+{% block title %}Home page
+{% endblock %}
 
 {% block body %}
-<header>
-<h1 class="animate__animated animate__backInLeft">Welcome to our online announcement site ! </h1>
-</header>
-{% for annonce in annonces %}
-<div class="annonce">
-<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
-<h2> 
-{{annonce.title}} 
-</h2>
-</a>
-<h3> 
-Posted the :
-{{annonce.createdOn | date('d/m/Y h:i:s')}} 
-</h3>
-<p>
-{{annonce.content}}
-</p>
-Price :
-{{annonce.price}}€
-<p>
-Posted by :
-{% if annonce.author %}
-  {{annonce.author.username}}
-</p>       
-{% endif %}
-{% if app.user and app.user == annonce.author %}
-<p>
-<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
-<button class="red">Delete</button></a>
-</p>
-<p>
-<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
-<button class="green">Edit</button></a>
-</p>
-{% endif %}
-</div>
-{% endfor %}
+	<header>
+		<h1 class="animate__animated animate__backInLeft">Welcome to our online announcement site !
+		</h1>
+	</header>
+	{% for annonce in annonces %}
+		<div class="annonce">
+			<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
+				<h2>
+					{{annonce.title}}
+				</h2>
+			</a>
+			<h3>
+				Posted the :
+				{{annonce.createdOn | date('d/m/Y h:i:s')}}
+			</h3>
+			<p>
+				{{annonce.content}}
+			</p>
+			Price :
+			{{annonce.price}}€
+			<p>
+				Posted by :
+				{% if annonce.author %}
+					{{annonce.author.username}}
+				</p>
+			{% endif %}
+			{% if app.user and app.user == annonce.author %}
+				<p>
+					<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
+						<button class="red">Delete</button>
+					</a>
+				</p>
+				<p>
+					<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
+						<button class="green">Edit</button>
+					</a>
+				</p>
+			{% endif %}
+		</div>
+	{% endfor %}
 {% endblock %}
+

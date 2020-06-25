@@ -19,6 +19,12 @@ Posted the :
 <p>
 Price :
 {{annonce.price}}€
+Posted by :
+{% if annonces.author %}
+{{annonces.author}} 
+{% else %}
+Anonyme        
+{% endif %}
 <a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
 <button>Delete</button>
 </a>

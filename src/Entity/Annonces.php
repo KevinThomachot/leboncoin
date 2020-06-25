@@ -37,6 +37,11 @@ class Annonces
      */
     private $price;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     */
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Annonces
     public function setPrice(float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

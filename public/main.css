@@ -10,7 +10,7 @@ header {
 }
 .annonce {
     border-style: inset;
-    box-shadow: 6px 6px 0px black;
+    box-shadow: 6px 6px 0px rgb(95, 91, 91);
     margin: 1%;
     padding: 2%;
 }
@@ -22,4 +22,11 @@ header {
 }
 .animate__animated.animate__backInLeft {
     --animate-duration: 3s;
+}
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 2%;
+    list-style-type : none;
   }

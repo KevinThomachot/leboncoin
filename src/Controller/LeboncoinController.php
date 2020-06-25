@@ -22,7 +22,7 @@ class LeboncoinController extends AbstractController
     {
         $annonceRepository = $this->getDoctrine()->getRepository(Annonces::class);
         $annonces = $annonceRepository->findBy([], ['created_on' => 'DESC']);
-        $annonces = $paginator->paginate($annonces,$request->query->getInt('page', 1), 2);
+        $annonces = $paginator->paginate($annonces,$request->query->getInt('page', 1), 3);
 
         return $this->render('leboncoin/index.html.twig', ['annonces' => $annonces]);
     }
@@ -42,7 +42,7 @@ class LeboncoinController extends AbstractController
         ->add('title', TextType::class)
         ->add('content', TextareaType::class)
         ->add('price', MoneyType::class)
-        ->add('submit', SubmitType::class, ['label' => 'Envoyer l\'annonce'])
+        ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
         ->getForm();
 
         $form->handleRequest($request);

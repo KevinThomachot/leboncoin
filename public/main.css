@@ -30,3 +30,6 @@ ul {
     margin-left: 2%;
     list-style-type : none;
 }
+.pagination {
+    text-align: center;
+}

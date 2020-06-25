@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonces;
+use Knp\Bundle\PaginatorBundle\Definition\PaginatorAwareInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -10,15 +11,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+
 class LeboncoinController extends AbstractController
 {
     /**
      * @Route("/", name="leboncoin_index")
      */
-    public function index()
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $annonceRepository = $this->getDoctrine()->getRepository(Annonces::class);
-        $annonces = $annonceRepository->findBy([], ['created_on' => 'ASC']);
+        $annonces = $annonceRepository->findBy([], ['created_on' => 'DESC']);
+        $annonces = $paginator->paginate($annonces,$request->query->getInt('page', 1), 2);
 
         return $this->render('leboncoin/index.html.twig', ['annonces' => $annonces]);
     }

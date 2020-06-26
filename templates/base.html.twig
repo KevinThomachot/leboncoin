@@ -16,17 +16,22 @@
 			{{app.user.username}}
 			!
 		{% endif %}
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
 		<nav>
 			<ul>
 				<li>
-					<a href="{{path('leboncoin_index')}}">Home page</a>
+					<a class="home" href="{{path('leboncoin_index')}}">Home page</a>
 				</li>
 				<li>
-					<a href="{{path('leboncoin_add')}}">Write an ad</a>
+					<a class ="write" href="{{path('leboncoin_add')}}">Write an ad</a>
 				</li>
 				{% if app.user %}
 					<li>
-						<a href="{{path('leboncoin_logout')}}">Logout</a>
+						<a class="logout" href="{{path('leboncoin_logout')}}">Logout</a>
 					</li>
 				{% else %}
 					<li>

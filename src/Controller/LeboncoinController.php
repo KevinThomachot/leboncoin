@@ -52,6 +52,8 @@ class LeboncoinController extends AbstractController
             $entityManager->persist($annonces); 
             $entityManager->flush();
 
+            $this->addFlash('success', 'Your ad has been created !');
+
             return $this->redirectToRoute('leboncoin_index');
         }
            return $this->render('leboncoin/add.html.twig', ['addForm' => $form->createView()]);
@@ -77,6 +79,8 @@ class LeboncoinController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($annonce);
         $entityManager->flush();
+
+        $this->addFlash('success', 'Your ad has been deleted !');
 
         return $this->redirectToRoute('leboncoin_index');
     }

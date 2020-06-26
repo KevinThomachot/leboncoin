@@ -66,3 +66,6 @@ a:hover {
     border-style: groove;
     border-radius: 2%;
 }
+form {
+    text-align: center;
+}

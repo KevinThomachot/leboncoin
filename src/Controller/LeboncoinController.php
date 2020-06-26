@@ -106,6 +106,8 @@ class LeboncoinController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
+            $this->addFlash('success', 'Your ad has been successfully modified !');
+
             return $this->redirectToRoute('leboncoin_annonce', ['id' => $annonce->getId()]);
         }
 

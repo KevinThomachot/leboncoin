@@ -16,11 +16,13 @@
 			{{app.user.username}}
 			!
 		{% endif %}
+		<p>
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success">
 				{{ message }}
-			</div>
+			</p>
 		{% endfor %}
+		</div>
 		<nav>
 			<ul>
 				<li>

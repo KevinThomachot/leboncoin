@@ -12,9 +12,11 @@ header {
 
 .annonce {
     border-style: inset;
-    box-shadow: 6px 6px 0px rgb(95, 91, 91);
     margin: 1%;
     padding: 2%;
+}
+.annonce:hover {
+    box-shadow: 6px 6px 0px rgb(95, 91, 91);
 }
 
 .green {
@@ -68,4 +70,9 @@ a:hover {
 }
 form {
     text-align: center;
+}
+.compte {
+    
+    border-style: groove;
+    border-radius: 2%;
 }

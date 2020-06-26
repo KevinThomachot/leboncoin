@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonces;
+use App\Entity\User;
 use Knp\Bundle\PaginatorBundle\Definition\PaginatorAwareInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -112,5 +113,30 @@ class LeboncoinController extends AbstractController
         }
 
         return $this->render('leboncoin/edit.html.twig', ['editForm' => $form->createView()]);
+    }
+    /**
+     * @Route("/compte/{id}", name="leboncoin_mon_compte")
+     */
+    public function editCompte($id, Request $request)
+    {
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $user = $userRepository->find($id);
+
+        $form = $this->createFormBuilder($user)
+            ->add('password', TextType::class)
+            ->add('submit', SubmitType::class, ['label' => 'Editer votre mot de passe'])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('leboncoin_mon_compte', ['id' => $user->getId()]);
+        }
+
+        return $this->render('leboncoin/moncompte.html.twig', ['editForm' => $form->createView()]);
     }
 }

@@ -22,7 +22,7 @@ class LeboncoinController extends AbstractController
     {
         $annonceRepository = $this->getDoctrine()->getRepository(Annonces::class);
         $annonces = $annonceRepository->findBy([], ['created_on' => 'DESC']);
-        $annonces = $paginator->paginate($annonces,$request->query->getInt('page', 1), 3);
+        $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 3);
 
         return $this->render('leboncoin/index.html.twig', ['annonces' => $annonces]);
     }
@@ -39,24 +39,24 @@ class LeboncoinController extends AbstractController
         $annonces->setAuthor($user);
 
         $form = $this->createFormBuilder($annonces)
-        ->add('title', TextType::class)
-        ->add('content', TextareaType::class)
-        ->add('price', MoneyType::class)
-        ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
-        ->getForm();
+            ->add('title', TextType::class)
+            ->add('content', TextareaType::class)
+            ->add('price', MoneyType::class)
+            ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
+            ->getForm();
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
-            $entityManager = $this->getDoctrine()->getManager(); 
-            $entityManager->persist($annonces); 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($annonces);
             $entityManager->flush();
 
             $this->addFlash('success', 'Your ad has been created !');
 
             return $this->redirectToRoute('leboncoin_index');
         }
-           return $this->render('leboncoin/add.html.twig', ['addForm' => $form->createView()]);
+        return $this->render('leboncoin/add.html.twig', ['addForm' => $form->createView()]);
     }
     /**
      * @Route("/annonce/{id}", name="leboncoin_annonce")
@@ -75,7 +75,7 @@ class LeboncoinController extends AbstractController
     {
         $annonceRepository = $this->getDoctrine()->getRepository(Annonces::class);
         $annonce = $annonceRepository->find($id);
-        
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($annonce);
         $entityManager->flush();
@@ -93,21 +93,20 @@ class LeboncoinController extends AbstractController
         $annonce = $annonceRepository->find($id);
 
         $form = $this->createFormBuilder($annonce)
-        ->add('title', TextType::class)
-        ->add('content', TextareaType::class)
-        ->add('price', MoneyType::class)
-        ->add('submit', SubmitType::class, ['label' => 'Editer l\'annonce'])
-        ->getForm();
+            ->add('title', TextType::class)
+            ->add('content', TextareaType::class)
+            ->add('price', MoneyType::class)
+            ->add('submit', SubmitType::class, ['label' => 'Editer l\'annonce'])
+            ->getForm();
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->flush();
-        
-        return $this->redirectToRoute('leboncoin_annonce', ['id' => $annonce->getId()]);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
 
+            return $this->redirectToRoute('leboncoin_annonce', ['id' => $annonce->getId()]);
         }
 
         return $this->render('leboncoin/edit.html.twig', ['editForm' => $form->createView()]);

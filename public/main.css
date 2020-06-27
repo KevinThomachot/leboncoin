@@ -11,7 +11,7 @@ header {
 }
 
 .annonce {
-    border-style: inset;
+    border-style: solid;
     margin: 1%;
     padding: 2%;
 }

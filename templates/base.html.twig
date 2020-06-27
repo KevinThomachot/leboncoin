@@ -33,7 +33,7 @@
 				</li>
 				{% if app.user %}
 					<li>
-					    <a class="compte" href="{{path('leboncoin_moncompte')}}">Mon compte</a>
+					    <a class="compte" href="{{path('leboncoin_compte', {'id' : app.user.username } )}}">Mon compte</a>
 						<a class="logout" href="{{path('leboncoin_logout')}}">Logout</a>
 					</li>
 				{% else %}

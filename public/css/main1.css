@@ -26,12 +26,12 @@ ul {
     list-style-type: none;
 }
 
-form {
+header {
     display: flex;
     justify-content: center;
 }
 
-header {
+.bienvenue {
     display: flex;
     justify-content: center;
 }

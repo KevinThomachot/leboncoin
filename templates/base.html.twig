@@ -13,11 +13,13 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 	</head>
 	<body>
+	<div class="bienvenue">
 		{% if app.user %}
 			Bienvenue
 			{{app.user.username}}
 			!
 		{% endif %}
+	</div>
 		<p>
 			{% for message in app.flashes('success') %}
 				<div class="alert alert-success">

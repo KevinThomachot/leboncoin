@@ -2,12 +2,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
 		{% block stylesheets %}{% endblock %}
-		<link rel="stylesheet" href="{{asset('main.css')}}">
+		<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+		<link rel="stylesheet" href="{{asset('css/main1.css')}}">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 	</head>
 	<body>
@@ -17,37 +19,35 @@
 			!
 		{% endif %}
 		<p>
-		{% for message in app.flashes('success') %}
-			<div class="alert alert-success">
-				{{ message }}
-			</p>
-		{% endfor %}
-		</div>
-		<nav>
-			<ul>
-				<li>
-					<a class="home" href="{{path('leboncoin_index')}}">Home page</a>
-				</li>
-				<li>
-					<a class="write" href="{{path('leboncoin_add')}}">Write an ad</a>
-				</li>
-				{% if app.user %}
-					<li>
-					    <a class="compte" href="{{path('leboncoin_compte', {'id' : app.user.username } )}}">Mon compte</a>
-						<a class="logout" href="{{path('leboncoin_logout')}}">Logout</a>
-					</li>
-				{% else %}
-					<li>
-						<a href="{{path('leboncoin_register')}}">Sign up</a>
-					</li>
-					<li>
-						<a href="{{path('leboncoin_login')}}">Sign in</a>
-					</li>
-				{% endif %}
-			</ul>
-		</nav>
-		{% block body %}{% endblock %}
-		{% block javascripts %}{% endblock %}
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</p>
+			{% endfor %}
+		</p>
 	</body>
-</html>
+</html></div><nav>
+<ul>
+	<li>
+		<a class="home" href="{{path('leboncoin_index')}}">Home page</a>
+	</li>
+	<li>
+		<a class="write" href="{{path('leboncoin_add')}}">Write an ad</a>
+	</li>
+	{% if app.user %}
+		<li>
+			<a class="compte" href="{{path('leboncoin_compte', {'id' : app.user.id } )}}">My account</a>
+		</li>
+		<li>
+			<a class="logout" href="{{path('leboncoin_logout')}}">Logout</a>
+		</li>
+	{% else %}
+		<li>
+			<a href="{{path('leboncoin_register')}}">Sign up</a>
+		</li>
+		<li>
+			<a href="{{path('leboncoin_login')}}">Sign in</a>
+		</li>
+	{% endif %}
+</ul></nav>{% block body %}{% endblock %}{% block javascripts %}{% endblock %}</body></html>
 

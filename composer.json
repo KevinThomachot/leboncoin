@@ -27,6 +27,7 @@
         "symfony/validator": "4.4.*",
         "symfony/web-link": "4.4.*",
         "symfony/yaml": "4.4.*",
+        "twbs/bootstrap": "^4.5",
         "vich/uploader-bundle": "^1.14"
     },
     "require-dev": {

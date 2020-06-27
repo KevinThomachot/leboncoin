@@ -121,8 +121,8 @@ class LeboncoinController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
         $form = $this->createFormBuilder($user)
-            ->add('username', TextType::class)
-            ->add('submit', SubmitType::class, ['label' => 'Editer votre mot de passe'])
+            ->add('username', TextType::class)      
+            ->add('submit', SubmitType::class, ['label' => 'Editer votre identifiant'])
             ->getForm();
 
         $form->handleRequest($request);
@@ -131,9 +131,11 @@ class LeboncoinController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Your username has been changed !');
+
             return $this->redirectToRoute('leboncoin_compte', ['id' => $user->getId()]);
         }
 
-        return $this->render('leboncoin/compte.html.twig', ['editForm' => $form->createView()]);
+        return $this->render('leboncoin/compte.html.twig', ['compteForm' => $form->createView()]);
     }
 }

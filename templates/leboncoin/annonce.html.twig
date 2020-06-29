@@ -13,13 +13,13 @@
 			{{annonce.title}}
 		</h2>
 	</a>
+	<p>
+		{{annonce.content}}
+	</p>
 	<h3>
 		Posted the :
 		{{annonce.createdOn | date('d/m/Y h:i:s')}}
 	</h3>
-	<p>
-		{{annonce.content}}
-	</p>
 	Price :
 	{{annonce.price}}€
 	<p>
@@ -41,4 +41,3 @@
 		{% endif %}
 	</p>
 </div>{% endblock %}
-

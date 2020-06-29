@@ -121,7 +121,7 @@ class LeboncoinController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
         $form = $this->createFormBuilder($user)
-            ->add('username', TextType::class)      
+            ->add('username', TextType::class)   
             ->add('submit', SubmitType::class, ['label' => 'Editer votre identifiant'])
             ->getForm();
 

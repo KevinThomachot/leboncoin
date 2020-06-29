@@ -35,3 +35,9 @@ header {
     display: flex;
     justify-content: center;
 }
+
+.annonce {
+    border-style: solid;
+    margin: 1%;
+    padding: 2%;
+}

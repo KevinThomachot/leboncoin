@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -18,18 +20,14 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('plainPassword', RepeatedType::class, [
+                //RepeatedType permet de définir un deuxiémé champs de vérification (mot de passe par exemple)
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'type' => PasswordType::class,
                 'mapped' => false,
+                'required' => true,
+                'invalid_message' => 'Les deux mots de passe ne correspondent pas !',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -41,7 +39,15 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                //pour définit de soptions pour chacun des deux champs on peut utiliser 
+                //first/second_options
+                'first_options' => ['label' => 'mot de passe'],
+                'second_options' => ['label' => 'Répeter mot de passe']
             ])
+            ->add('picture', FileType::class,
+            //mapped => false permet d'empêche le traitement automatique de la donnée de formulaire pour la stocker dans l'objet
+            //cette option est neccésaire quand un traitement est demandé sur mla donnée avant de la stocker dans l'objet
+            ['mapped' => false])
         ;
     }
 

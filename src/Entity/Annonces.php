@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
+ * @Vich\Uploadable
  */
 class Annonces
 {
@@ -41,6 +45,22 @@ class Annonces
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
      */
     private $author;
+
+
+    /**
+     * @Vich\UploadableField(mapping="annonces_photos", fileNameProperty="photos")
+     * @assert\File(
+     * maxSize="2M", 
+     * mimeTypes = {"image/png" , "image/jpg"},
+     * mimeTypesMessage = "Seules les images jpg et png sont acceptées"
+     * )
+     */
+    private $photosFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photos;
 
     public function getId(): ?int
     {
@@ -106,4 +126,24 @@ class Annonces
 
         return $this;
     }
+    public function getPhotosFile(): ?File
+    {
+        return $this->photosFile;
+    }
+    public function setPhotosFile(?File $photosFile = null): void
+    {
+        $this->photosFile = $photosFile;
+    }
+
+    public function getPhotos(): ?string
+    {
+        return $this->photos;
+    }
+
+    public function setPhotos(?string $photos): self
+    {
+        $this->photos = $photos;
+
+        return $this;
+    } 
 }

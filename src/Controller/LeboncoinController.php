@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class LeboncoinController extends AbstractController
 {
@@ -44,6 +45,7 @@ class LeboncoinController extends AbstractController
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
             ->add('price', MoneyType::class)
+            ->add('photosFile', VichImageType::class, ['required' => false])
             ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
             ->getForm();
 

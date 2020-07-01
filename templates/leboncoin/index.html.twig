@@ -40,6 +40,7 @@
 						<button class="green">Edit</button>
 					</a>
 				</p>
+				<img src="{{asset('uploads/annoncesPictures/') ~ app.user.photos ?? 'default.png'}}" alt="annonces picture">
 			{% endif %}
 		</div>
 	{% endfor %}

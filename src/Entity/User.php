@@ -7,11 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @Vich\Uploadable
  */
 class User implements UserInterface
 {
@@ -47,6 +51,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
+
+    /**
+     * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="avatar")
+     * @assert\File(
+     * maxSize="2M", 
+     * mimeTypes = {"image/png" , "image/jpg"},
+     * mimeTypesMessage = "Seules les images jpg et png sont acceptées"
+     * )
+     */
+    private $avatarFile;
 
     public function __construct()
     {
@@ -168,4 +182,13 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
+    }
+    public function setAvatarFile(?File $avatarFile = null): void
+    {
+        $this->avatarFile = $avatarFile;
+    } 
 }

@@ -4,15 +4,13 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -44,11 +42,11 @@ class RegistrationFormType extends AbstractType
                 'first_options' => ['label' => 'mot de passe'],
                 'second_options' => ['label' => 'Répeter mot de passe']
             ])
-            ->add('picture', FileType::class,
-            //mapped => false permet d'empêche le traitement automatique de la donnée de formulaire pour la stocker dans l'objet
-            //cette option est neccésaire quand un traitement est demandé sur mla donnée avant de la stocker dans l'objet
-            ['mapped' => false])
-        ;
+            ->add('avatarFile', VichImageType::class, [
+                //mapped => false permet d'empêche le traitement automatique de la donnée de formulaire pour la stocker dans l'objet
+                //cette option est neccésaire quand un traitement est demandé sur mla donnée avant de la stocker dans l'objet
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

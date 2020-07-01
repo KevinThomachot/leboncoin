@@ -33,11 +33,20 @@ header {
 
 .bienvenue {
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    margin-top: 0%;
+
 }
 
 .annonce {
     border-style: solid;
     margin: 1%;
     padding: 2%;
+}
+.image {
+    display: flex;
+    justify-content: left;
+    width:2.5%;
+    height: 2.5%;
+    margin-top: 0.5%;
 }

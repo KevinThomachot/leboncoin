@@ -13,13 +13,6 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 	</head>
 	<body>
-	<div class="bienvenue">
-		{% if app.user %}
-			Bienvenue
-			{{app.user.username}}
-			!
-		{% endif %}
-	</div>
 		<p>
 			{% for message in app.flashes('success') %}
 				<div class="alert alert-success">
@@ -51,5 +44,22 @@
 			<a href="{{path('leboncoin_login')}}">Sign in</a>
 		</li>
 	{% endif %}
-</ul></nav>{% block body %}{% endblock %}{% block javascripts %}{% endblock %}</body></html>
+</ul>
+</nav>
+    		<div class="bienvenue">
+			{% if app.user %}
+				{{app.user.username}}
+			{% endif %}
+		</div>
+	{% if app.user %}	
+	<div class="image">
+		<img src="{{asset('uploads/userPictures/') ~ app.user.avatar ?? 'default.png'}}" alt="user picture">
+	</div>
+	{% endif %}
+	{% block body %}
+	{% endblock %}
+	{% block javascripts %}
+	{% endblock %}
+	</body>
+	</html>
 

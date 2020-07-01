@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class LeboncoinController extends AbstractController
 {
@@ -116,26 +118,33 @@ class LeboncoinController extends AbstractController
     /**
      * @Route("/compte/{id}", name="leboncoin_compte")
      */
-    public function editCompte($id, Request $request)
+    public function editCompte($id, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
+        $user = $this->getUser();
+
+        $annonceRepository = $this->getDoctrine()->getRepository(Annonces::class);
+        $annonces = $annonceRepository->findBy(['author' => $user], ['created_on' => 'DESC']);
+
         $form = $this->createFormBuilder($user)
-            ->add('username', TextType::class)   
-            ->add('submit', SubmitType::class, ['label' => 'Editer votre identifiant'])
+            ->add('password', PasswordType::class, ['mapped' => false])
+            ->add('submit', SubmitType::class, ['label' => 'Editer votre mot de passe'])
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $user->setPassword($passwordEncoder->encodePassword($user,$form->get('password')->getData()));
+
             $entityManager = $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Your username has been changed !');
+            $this->addFlash('success', 'Your password has been changed !');
 
             return $this->redirectToRoute('leboncoin_compte', ['id' => $user->getId()]);
         }
 
-        return $this->render('leboncoin/compte.html.twig', ['compteForm' => $form->createView()]);
+        return $this->render('leboncoin/compte.html.twig', ['compteForm' => $form->createView(), 'annonces' => $annonces]);
     }
 }

@@ -138,7 +138,7 @@ class LeboncoinController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user->setPassword($passwordEncoder->encodePassword($user,$form->get('password')->getData()));
+            $user->setPassword($passwordEncoder->encodePassword($user, $form->get('password')->getData()));
 
             $entityManager = $this->getDoctrine()->getManager()->flush();
 

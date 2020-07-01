@@ -14,6 +14,7 @@
 		<h1 class="animate__animated animate__backInLeft">Your Ads
 		</h1>
 	</header>
+	{{ form(compteForm) }}
 	{% for annonce in annonces %}
 		<div class="annonce">
 			<h2>
@@ -45,9 +46,9 @@
 						<button class="green">Edit</button>
 					</a>
 				</p>
-
+				<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
+				</div>
 			{% endif %}
 		{% endfor %}
-	</p>
-</div>
-{{ form(compteForm) }}{% endblock %}
+	</p>{% endblock %}
+

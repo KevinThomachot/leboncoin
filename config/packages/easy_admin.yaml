@@ -1,0 +1,22 @@
+easy_admin:
+  entities:
+    Annonces:
+      class: App\Entity\Annonces
+      list:
+        fields:
+          - title
+          - content
+          - { property: 'photos', type: 'image' , base_path : '/uploads/annoncesPictures'}
+      form:
+        fields:
+          - title
+          - content
+          - { property: 'photosFile', type: 'vich_image'}
+    User:
+      class: App\Entity\User
+      list:
+        fields:
+          - username
+          - created_on
+          - annonces
+          - { property: 'avatar', type: 'image' , base_path : '/uploads/UserPictures'}

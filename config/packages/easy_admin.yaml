@@ -18,6 +18,7 @@ easy_admin:
         fields:
           - username
           - annonces
+          - roles
           - { property: 'avatar', type: 'image' , base_path : '/uploads/UserPictures'}
       form:
         fields:

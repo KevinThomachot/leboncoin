@@ -36,6 +36,9 @@
 		<li>
 			<a class="logout" href="{{path('leboncoin_logout')}}">Logout</a>
 		</li>
+		<li>
+			<a class="logout" href="http://127.0.0.1:8000/admin">Panel Admin</a>
+		</li>
 	{% else %}
 		<li>
 			<a href="{{path('leboncoin_register')}}">Sign up</a>
@@ -44,22 +47,11 @@
 			<a href="{{path('leboncoin_login')}}">Sign in</a>
 		</li>
 	{% endif %}
-</ul>
-</nav>
-    		<div class="bienvenue">
-			{% if app.user %}
-				{{app.user.username}}
-			{% endif %}
-		</div>
-	{% if app.user %}	
-	<div class="image">
-		<img src="{{asset('uploads/userPictures/') ~ app.user.avatar ?? 'default.png'}}" alt="user picture">
-	</div>
-	{% endif %}
-	{% block body %}
-	{% endblock %}
-	{% block javascripts %}
-	{% endblock %}
-	</body>
-	</html>
+</ul></nav><div class="bienvenue">
+{% if app.user %}
+	{{app.user.username}}
+{% endif %}</div>{% if app.user %}
+<div class="image">
+	<img src="{{asset('uploads/userPictures/') ~ app.user.avatar ?? 'default.png'}}" alt="user picture">
+</div>{% endif %}{% block body %}{% endblock %}{% block javascripts %}{% endblock %}</body></html>
 

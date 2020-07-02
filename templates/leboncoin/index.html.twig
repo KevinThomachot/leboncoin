@@ -40,8 +40,8 @@
 						<button class="green">Edit</button>
 					</a>
 				</p>
-				<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
 			{% endif %}
+			<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
 		</div>
 	{% endfor %}
 	<div class="pagination">

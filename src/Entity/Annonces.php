@@ -51,7 +51,7 @@ class Annonces
      * @Vich\UploadableField(mapping="annonces_photos", fileNameProperty="photos")
      * @assert\File(
      * maxSize="10M", 
-     * mimeTypes = {"image/png" , "image/jpg" , "image/JPG", "image/PNG"},
+     * mimeTypes = {"image/png" , "image/jpeg"},
      * mimeTypesMessage = "Seules les images jpg et png sont acceptées"
      * )
      */

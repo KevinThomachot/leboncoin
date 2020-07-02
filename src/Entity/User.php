@@ -57,7 +57,7 @@ class User implements UserInterface
      * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="avatar")
      * @assert\File(
      * maxSize="2M", 
-     * mimeTypes = {"image/png" , "image/jpg"},
+     * mimeTypes = {"image/png" , "image/jpeg"},
      * mimeTypesMessage = "Seules les images jpg et png sont acceptées"
      * )
      */
@@ -88,6 +88,10 @@ class User implements UserInterface
         $this->username = $username;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->getUsername();
     }
 
     /**

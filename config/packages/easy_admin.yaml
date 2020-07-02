@@ -17,6 +17,9 @@ easy_admin:
       list:
         fields:
           - username
-          - created_on
           - annonces
           - { property: 'avatar', type: 'image' , base_path : '/uploads/UserPictures'}
+      form:
+        fields:
+          - username
+          - { property: 'avatarFile', type: 'vich_image'}

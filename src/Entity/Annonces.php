@@ -137,6 +137,10 @@ class Annonces
     public function setPhotosFile(?File $photosFile = null): void
     {
         $this->photosFile = $photosFile;
+
+        if ($photosFile !== null){
+            $this->updateOn = new \DateTime();
+        }
     }
 
     public function getPhotos(): ?string

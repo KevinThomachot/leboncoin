@@ -50,7 +50,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    
+
     private $avatar;
 
     /**
@@ -62,6 +62,11 @@ class User implements UserInterface
      * )
      */
     private $avatarFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateOn;
 
     public function __construct()
     {
@@ -86,6 +91,7 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+        $this->updateOn = new \DateTime();
 
         return $this;
     }
@@ -109,6 +115,7 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+        $this->updateOn = new \DateTime();
 
         return $this;
     }
@@ -124,6 +131,7 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+        $this->updateOn = new \DateTime();
 
         return $this;
     }
@@ -184,6 +192,7 @@ class User implements UserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+        $this->updateOn = new \DateTime();
 
         return $this;
     }
@@ -195,5 +204,18 @@ class User implements UserInterface
     public function setAvatarFile(?File $avatarFile = null): void
     {
         $this->avatarFile = $avatarFile;
-    } 
+        $this->updateOn = new \DateTime();
+    }
+
+    public function getUpdateOn(): ?\DateTimeInterface
+    {
+        return $this->updateOn;
+    }
+
+    public function setUpdateOn(?\DateTimeInterface $updateOn): self
+    {
+        $this->updateOn = $updateOn;
+
+        return $this;
+    }
 }

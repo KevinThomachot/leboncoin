@@ -45,7 +45,7 @@ class LeboncoinController extends AbstractController
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
             ->add('price', MoneyType::class)
-            ->add('photosFile', VichImageType::class, ['required' => false])
+            ->add('photosFile', VichImageType::class, ['required' => false] , ['multiple'=>true])
             ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
             ->getForm();
 

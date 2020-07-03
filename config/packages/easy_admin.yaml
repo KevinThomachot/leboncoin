@@ -10,9 +10,11 @@ easy_admin:
       class: App\Entity\Annonces
       list:
         fields:
+          - author
           - title
           - content
           - { property: 'photos', type: 'image' , base_path : '/uploads/annoncesPictures'}
+          - created_on
       form:
         fields:
           - title

@@ -43,6 +43,7 @@ header {
     border-color: white;
     margin: 1%;
     padding: 2%;
+    box-shadow: 10px 5px 5px red;
 }
 .image {
     display: flex;

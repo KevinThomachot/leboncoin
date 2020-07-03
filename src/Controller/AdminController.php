@@ -9,6 +9,11 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends EasyAdminController
 {
+    private $encoder;
+    public function __construct(UserPasswordEncoderInterface $encoder){
+        $this->encoder = $encoder;    
+    }
+
    public function persistAnnoncesEntity(Annonces $entity){
        $entity->setCreatedOn(new \DateTime());
        $entity->setAuthor($this->getUser());
@@ -16,8 +21,11 @@ class AdminController extends EasyAdminController
        parent::persistEntity($entity);
 
    } 
-   public function persistUserEntity(User $entity, UserPasswordEncoderInterface $encoder)
+   public function persistUserEntity(User $entity)
    {
+      $password = $entity->getPassword();
+      $entity->setPassword($this->encoder->encodePassword($entity, $password));
 
+      parent::persistEntity($entity);
    }
 }

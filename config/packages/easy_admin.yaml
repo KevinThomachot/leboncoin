@@ -1,4 +1,10 @@
 easy_admin:
+  site_name: "Panel Admin Leboncoin"
+  design:
+    menu:
+      - { label: 'Accueil', route: 'leboncoin_index', icon: 'home' }
+      - { entity : 'Annonces', icon : 'newspaper' }
+      - { entity: 'User', icon : 'user' }
   entities:
     Annonces:
       class: App\Entity\Annonces
@@ -11,6 +17,7 @@ easy_admin:
         fields:
           - title
           - content
+          - price
           - { property: 'photosFile', type: 'vich_image'}
     User:
       class: App\Entity\User
@@ -23,5 +30,5 @@ easy_admin:
       form:
         fields:
           - username
-          - { property: 'roles' , type: 'collection' }
+          - { property: 'roles' , type: 'collection', permission: 'ROLE_SUPER_ADMIN' }
           - { property: 'avatarFile', type: 'vich_image'}

@@ -36,9 +36,11 @@
 		<li>
 			<a class="logout" href="{{path('leboncoin_logout')}}">Logout</a>
 		</li>
+		{% if is_granted('ROLE_ADMIN') %}
 		<li>
-			<a class="logout" href="http://127.0.0.1:8000/admin">Panel Admin</a>
+			<a class="logout" href="{{path('easyadmin')}}">Panel Admin</a>
 		</li>
+		{% endif %}
 	{% else %}
 		<li>
 			<a href="{{path('leboncoin_register')}}">Sign up</a>

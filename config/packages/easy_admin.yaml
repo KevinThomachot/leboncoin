@@ -30,5 +30,10 @@ easy_admin:
       form:
         fields:
           - username
+          - annonces
           - { property: 'roles' , type: 'collection', permission: 'ROLE_SUPER_ADMIN' }
           - { property: 'avatarFile', type: 'vich_image'}
+      new : 
+        fields:
+          - password
+          - '-annonces'

@@ -40,11 +40,14 @@ header {
 
 .annonce {
     border-style: solid;
+    border-radius: 9%;
     border-color: white;
     margin: 1%;
     padding: 2%;
-    box-shadow: 10px 5px 5px red;
+    box-shadow: 10px 5px 5px black;
+    background-color: white;
 }
+
 .image {
     display: flex;
     justify-content: left;

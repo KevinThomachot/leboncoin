@@ -23,4 +23,6 @@ easy_admin:
       form:
         fields:
           - username
+          - roles
+          - { property: 'roles' , type: 'collection' }
           - { property: 'avatarFile', type: 'vich_image'}

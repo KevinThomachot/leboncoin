@@ -56,7 +56,7 @@ class User implements UserInterface
     /**
      * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="avatar")
      * @Assert\File(
-     * maxSize="3M", 
+     * maxSize="10M", 
      * mimeTypes = {"image/png" , "image/jpeg"},
      * mimeTypesMessage = "Seules les images jpg et png sont acceptées"
      * )

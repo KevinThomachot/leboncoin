@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Annonces;
 use App\Entity\User;
+use Gregwar\CaptchaBundle\Type\CaptchaType ;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -12,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -47,6 +47,7 @@ class LeboncoinController extends AbstractController
             ->add('content', TextareaType::class)
             ->add('price', MoneyType::class)
             ->add('photosFile', VichImageType::class, ['required' => false])
+            ->add ( 'captcha' , CaptchaType:: class)
             ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
             ->getForm();
 
@@ -57,7 +58,7 @@ class LeboncoinController extends AbstractController
             $entityManager->persist($annonces);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Your ad has been created !');
+            $this->addFlash('success', 'Votre annonce a bien été créer !');
 
             return $this->redirectToRoute('leboncoin_index');
         }
@@ -85,7 +86,7 @@ class LeboncoinController extends AbstractController
         $entityManager->remove($annonce);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Your ad has been deleted !');
+        $this->addFlash('success', 'Votre annonce a bie été supprimée !');
 
         return $this->redirectToRoute('leboncoin_index');
     }
@@ -111,7 +112,7 @@ class LeboncoinController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
-            $this->addFlash('success', 'Your ad has been successfully modified !');
+            $this->addFlash('success', 'Votre annonce a bien été modifiée !');
 
             return $this->redirectToRoute('leboncoin_annonce', ['id' => $annonce->getId()]);
         }
@@ -143,7 +144,7 @@ class LeboncoinController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'Your password has been changed !');
+            $this->addFlash('success', 'Votre mot de passe a bien été changé !');
 
             return $this->redirectToRoute('leboncoin_compte', ['id' => $user->getId()]);
         }

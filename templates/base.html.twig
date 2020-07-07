@@ -23,29 +23,29 @@
 </html></div><nav>
 <ul>
 	<li>
-		<a class="home" href="{{path('leboncoin_index')}}">Home page</a>
+		<a class="home" href="{{path('leboncoin_index')}}">Page d'accueil</a>
 	</li>
 	<li>
-		<a class="write" href="{{path('leboncoin_add')}}">Write an ad</a>
+		<a class="write" href="{{path('leboncoin_add')}}">Ecrire une annonce</a>
 	</li>
 	{% if app.user %}
 		<li>
-			<a class="compte" href="{{path('leboncoin_compte', {'id' : app.user.id } )}}">My account</a>
+			<a class="compte" href="{{path('leboncoin_compte', {'id' : app.user.id } )}}">Mon compte</a>
 		</li>
 		<li>
-			<a class="logout" href="{{path('leboncoin_logout')}}">Logout</a>
+			<a class="logout" href="{{path('leboncoin_logout')}}">Déconnexion</a>
 		</li>
 		{% if is_granted('ROLE_ADMIN') %}
 			<li>
-				<a class="logout" href="{{path('easyadmin')}}">Panel Admin</a>
+				<a class="logout" href="{{path('easyadmin')}}">Administration</a>
 			</li>
 		{% endif %}
 	{% else %}
 		<li>
-			<a href="{{path('leboncoin_register')}}">Sign up</a>
+			<a href="{{path('leboncoin_register')}}">S'inscrire</a>
 		</li>
 		<li>
-			<a href="{{path('leboncoin_login')}}">Sign in</a>
+			<a href="{{path('leboncoin_login')}}">Se connecter</a>
 		</li>
 	{% endif %}
 </ul></nav><div class="bienvenue">

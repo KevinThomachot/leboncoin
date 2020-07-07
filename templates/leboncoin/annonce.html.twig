@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Announcement page
+{% block title %}Page d'annonce
 {% endblock %}
 
 {% block body %}
@@ -17,13 +17,13 @@
 		{{annonce.content}}
 	</p>
 	<h3>
-		Posted the :
+		Posté le :
 		{{annonce.createdOn | date('d/m/Y h:i:s')}}
 	</h3>
-	Price :
+	Prix :
 	{{annonce.price}}€
 	<p>
-		seller :
+		Vendeur :
 		{% if annonce.author %}
 			{{annonce.author.username}}
 		{% endif %}

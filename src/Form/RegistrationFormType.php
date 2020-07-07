@@ -11,6 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -37,7 +39,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-                //pour définit de soptions pour chacun des deux champs on peut utiliser 
+                //pour définit des options pour chacun des deux champs on peut utiliser 
                 //first/second_options
                 'first_options' => ['label' => 'mot de passe'],
                 'second_options' => ['label' => 'Répeter mot de passe']
@@ -45,8 +47,11 @@ class RegistrationFormType extends AbstractType
             ->add('avatarFile', VichImageType::class, [
                 //mapped => false permet d'empêche le traitement automatique de la donnée de formulaire pour la stocker dans l'objet
                 //cette option est neccésaire quand un traitement est demandé sur mla donnée avant de la stocker dans l'objet
-                'required' => false
-            ]);
+                'required' => false])
+                ->add ( 'captcha' , CaptchaType:: class)
+                ->add('submit', SubmitType::class, ['label' => 'S\'inscrire']);
+
+            
     }
 
     public function configureOptions(OptionsResolver $resolver)

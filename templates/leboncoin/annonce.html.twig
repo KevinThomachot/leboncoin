@@ -5,7 +5,7 @@
 
 {% block body %}
 	<header>
-		<h1 class="animate__animated animate__backInLeft">Your Ads
+		<h1 class="animate__animated animate__backInLeft">Mes annonces
 		</h1>
 	</header>
 	<div class="annonce">
@@ -30,12 +30,12 @@
 		{% if app.user and app.user == annonce.author %}
 			<p>
 				<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
-					<button class="red">Delete</button>
+					<button class="red">Supprimer</button>
 				</a>
 			</p>
 			<p>
 				<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
-					<button class="green">Edit</button>
+					<button class="green">Modifier</button>
 				</a>
 			</p>
 		{% endif %}

@@ -62,6 +62,12 @@ class Annonces
      */
     private $photos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,6 +157,18 @@ class Annonces
     public function setPhotos(?string $photos): self
     {
         $this->photos = $photos;
+
+        return $this;
+    }
+
+    public function getCategory(): ?category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     } 

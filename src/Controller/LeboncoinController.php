@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Annonces;
+use App\Entity\Category;
 use App\Entity\User;
-use Gregwar\CaptchaBundle\Type\CaptchaType ;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -43,6 +45,7 @@ class LeboncoinController extends AbstractController
         $annonces->setAuthor($user);
 
         $form = $this->createFormBuilder($annonces)
+            ->add('category', EntityType::class, ['class' => Category::class, 'choice_label' => 'name'])
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
             ->add('price', MoneyType::class)
@@ -95,13 +98,16 @@ class LeboncoinController extends AbstractController
      */
     public function edit($id, Request $request)
     {
+
         $annonceRepository = $this->getDoctrine()->getRepository(Annonces::class);
         $annonce = $annonceRepository->find($id);
+        $annonce->setCreatedOn(new \DateTime);
 
         $form = $this->createFormBuilder($annonce)
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
             ->add('price', MoneyType::class)
+            ->add('photosFile', VichImageType::class, ['required' => false])
             ->add('submit', SubmitType::class, ['label' => 'Editer l\'annonce'])
             ->getForm();
 
@@ -150,5 +156,15 @@ class LeboncoinController extends AbstractController
         }
 
         return $this->render('leboncoin/compte.html.twig', ['compteForm' => $form->createView(), 'annonces' => $annonces]);
+    }
+    /**
+     * @Route("/category/{id}", name="leboncoin_category")
+     */
+    public function category(Request $request)
+    {
+        $annonceRepository = $this->getDoctrine()->getRepository(Category::class);
+        $annonces = $annonceRepository->findBy([], ['name' => 'DESC']);
+
+        return $this->render('leboncoin/category.html.twig', ['annonces' => $annonces]);
     }
 }

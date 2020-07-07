@@ -5,6 +5,7 @@ easy_admin:
       - { label: 'Accueil', route: 'leboncoin_index', icon: 'home' }
       - { entity : 'Annonces', icon : 'newspaper' }
       - { entity: 'User', icon : 'user' }
+      - { entity: 'Category', icon: 'newspaper'}
   entities:
     Annonces:
       class: App\Entity\Annonces
@@ -40,3 +41,11 @@ easy_admin:
         fields:
           - password
           - '-annonces'
+    Category:
+      class: App\Entity\Category
+      list:
+        fields:
+          - name
+      form:
+        fields:
+          - name

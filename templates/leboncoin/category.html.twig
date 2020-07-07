@@ -8,7 +8,7 @@
 	<h1 class="animate__animated animate__lightSpeedInRight">Leboncoin</h1>
 </header>
 <div class="annonce">
-	<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
+	<a href="{{ path('leboncoin_category', {'id' : annonce.category.name }) }}">
 		<h2>
 			{{annonce.title}}
 		</h2>

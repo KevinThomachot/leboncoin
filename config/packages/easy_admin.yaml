@@ -5,7 +5,7 @@ easy_admin:
       - { label: 'Accueil', route: 'leboncoin_index', icon: 'home' }
       - { entity : 'Annonces', icon : 'newspaper' }
       - { entity: 'User', icon : 'user' }
-      - { entity: 'Category', icon: 'newspaper'}
+      - { entity: 'Category', icon: 'align-center'}
   entities:
     Annonces:
       class: App\Entity\Annonces
@@ -16,6 +16,7 @@ easy_admin:
           - content
           - { property: 'photos', type: 'image' , base_path : '/uploads/annoncesPictures'}
           - created_on
+          - category
       form:
         fields:
           - title

@@ -93,3 +93,8 @@ header {
 .dropdown:hover .dropdown-child {
     display: block;
 }
+
+form {
+    display: flex;
+    justify-content: center;
+}

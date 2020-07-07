@@ -3,8 +3,8 @@
 {% block title %}
 	Modifiez votre compte
 {% endblock %}
-
 {% block body %}
+{{ form(compteForm) }}
 	<header>
 		<h1>
 			Modifiez votre compte
@@ -14,7 +14,6 @@
 		<h1 class="animate__animated animate__backInLeft">Mes annonces
 		</h1>
 	</header>
-	{{ form(compteForm) }}
 	{% for annonce in annonces %}
 		<div class="annonce">
 			<h2>

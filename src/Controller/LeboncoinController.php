@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Annonces;
 use App\Entity\Category;
 use App\Entity\User;
+use App\Repository\AnnoncesRepository;
+use App\Repository\CategoryRepository;
 use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -15,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -28,9 +31,16 @@ class LeboncoinController extends AbstractController
     {
         $annonceRepository = $this->getDoctrine()->getRepository(Annonces::class);
         $annonces = $annonceRepository->findBy([], ['created_on' => 'DESC']);
+
+        $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
+        $category = $categoryRepository->findAll();
+
         $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 3);
 
-        return $this->render('leboncoin/index.html.twig', ['annonces' => $annonces]);
+        return $this->render('leboncoin/index.html.twig',  ['annonces' => $annonces,
+        'categories' => $category
+        ]);
+
     }
 
     /**
@@ -50,7 +60,7 @@ class LeboncoinController extends AbstractController
             ->add('content', TextareaType::class)
             ->add('price', MoneyType::class)
             ->add('photosFile', VichImageType::class, ['required' => false])
-            ->add ( 'captcha' , CaptchaType:: class)
+            ->add ('captcha', CaptchaType:: class)
             ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
             ->getForm();
 
@@ -157,13 +167,15 @@ class LeboncoinController extends AbstractController
 
         return $this->render('leboncoin/compte.html.twig', ['compteForm' => $form->createView(), 'annonces' => $annonces]);
     }
+
     /**
-     * @Route("/category/{id}", name="leboncoin_category")
+     * @Route("/category/{name}", name="leboncoin_category")
      */
-    public function category(Request $request)
+    public function category($name, CategoryRepository $categoryRepository, AnnoncesRepository $annonceRepository )
     {
-        $annonceRepository = $this->getDoctrine()->getRepository(Category::class);
-        $annonces = $annonceRepository->findBy([], ['name' => 'DESC']);
+        $category = $categoryRepository->findOneBy(['name' => $name]);
+
+        $annonces = $annonceRepository->findBy(['category' => $category]);
 
         return $this->render('leboncoin/category.html.twig', ['annonces' => $annonces]);
     }

@@ -25,18 +25,21 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-left: 2%;
     list-style-type: none;
 }
 
-header {
+.categories {
+    display: flex;
+    justify-content: space-around;
+}
+
+.titre {
     display: flex;
     justify-content: center;
 }
 
 .bienvenue {
     display: flex;
-    justify-content: left;
     margin-top: 0%;
 
 }
@@ -58,43 +61,12 @@ header {
     margin-top: 0.5%;
 }
 
-.boutonmenuprincipal {
-    background-color: #5453a8;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 20px;
-    margin-top: 20px;
-    font-size: 15px;
-}
-
-.boutonmenuprincipal:hover {
-    background-color: #5453a8;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-child {
-    display: none;
-    background-color: #5453a8;
-    min-width: 50px;
-}
-
-.dropdown-child a {
-    color: white;
-    padding: 20px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown:hover .dropdown-child {
-    display: block;
-}
-
 form {
     display: flex;
     justify-content: center;
+}
+
+.navbarnavbar-expand-lgnavbar-lightbg-light {
+    display: flex;
+    justify-content: space-around;
 }

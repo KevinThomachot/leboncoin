@@ -8,51 +8,62 @@
 			{% endblock %}
 		</title>
 		{% block stylesheets %}{% endblock %}
+		{# <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}"> #}
 		<link rel="stylesheet" href="{{asset('css/main1.css')}}">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 	</head>
 	<body>
-		<p>
-			{% for message in app.flashes('success') %}
-				<div class="alert alert-success">
-					{{ message }}
-				</p>
-			{% endfor %}
-		</p>
+			<p>
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success">
+						{{ message }}
+					</p>
+				{% endfor %}
+			</p>
+		</body>
 	</body>
-</html></div><nav>
-<ul>
-	<li>
-		<a class="home" href="{{path('leboncoin_index')}}">Page d'accueil</a>
+</html></div><nav class="navbar navbar-expand-lg navbar-light bg-light">
+<ul class="navbar-nav mr-auto">
+	<li class="nav-item active">
+		<a class="nav-link" href="{{path('leboncoin_index')}}">Page d'accueil</a>
 	</li>
-	<li>
-		<a class="write" href="{{path('leboncoin_add')}}">Ecrire une annonce</a>
+	<li class="nav-item active">
+		<a class="nav-link" href="{{path('leboncoin_add')}}">Ecrire une annonce</a>
 	</li>
 	{% if app.user %}
-		<li>
-			<a class="compte" href="{{path('leboncoin_compte', {'id' : app.user.id } )}}">Mon compte</a>
+		<li class="nav-item active">
+			<a class="nav-link" href="{{path('leboncoin_compte', {'id' : app.user.id } )}}">Mon compte</a>
 		</li>
-		<li>
-			<a class="logout" href="{{path('leboncoin_logout')}}">Déconnexion</a>
+		<li class="nav-item active">
+			<a class="nav-link" href="{{path('leboncoin_logout')}}">Déconnexion</a>
 		</li>
 		{% if is_granted('ROLE_ADMIN') %}
-			<li>
-				<a class="logout" href="{{path('easyadmin')}}">Administration</a>
+			<li class="nav-item active">
+				<a class="nav-link" href="{{path('easyadmin')}}">Administration</a>
 			</li>
 		{% endif %}
 	{% else %}
-		<li>
-			<a href="{{path('leboncoin_register')}}">S'inscrire</a>
+		<li class="nav-item active">
+			<a class="nav-link" href="{{path('leboncoin_register')}}">S'inscrire</a>
 		</li>
-		<li>
-			<a href="{{path('leboncoin_login')}}">Se connecter</a>
+		<li class="nav-item active">
+			<a class="nav-link" href="{{path('leboncoin_login')}}">Se connecter</a>
 		</li>
 	{% endif %}
-</ul></nav><div class="bienvenue">
+</ul>
+</nav>
+<div class="bienvenue">
 {% if app.user %}
 	{{app.user.username}}
-{% endif %}</div>{% if app.user %}
-<div class="image">
-	<img src="{{asset('uploads/userPictures/') ~ app.user.avatar ?? 'default.png'}}" alt="user picture">
-</div>{% endif %}{% block body %}{% endblock %}{% block javascripts %}{% endblock %}</body></html>
+	</div>
+	<div class="image">
+		<img src="{{asset('uploads/userPictures/') ~ app.user.avatar ?? 'default.png'}}" alt="user picture">
+</div>
+{% endif %}
+{% block body %}
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>
 

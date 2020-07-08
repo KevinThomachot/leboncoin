@@ -3,43 +3,44 @@
 {% endblock %}
 
 {% block body %}
-{% for annonce in annonces %}
-<header>
-	<h1 class="animate__animated animate__lightSpeedInRight">Leboncoin</h1>
-</header>
-<div class="annonce">
-	<a href="{{ path('leboncoin_category', {'id' : annonce.category.name }) }}">
-		<h2>
-			{{annonce.title}}
-		</h2>
-	</a>
-	<p>
-		{{annonce.content}}
-	</p>
-	<h3>
-		Posté le :
-		{{annonce.createdOn | date('d/m/Y h:i:s')}}
-	</h3>
-	Prix :
-	{{annonce.price}}€
-	<p>
-		Vendeur :
-		{% if annonce.author %}
-			{{annonce.author.username}}
-		</p>
-	{% endif %}
-	{% if app.user and app.user == annonce.author %}
-		<p>
-			<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
-				<button class="red">Supprimer</button>
+	{% for annonce in annonces %}
+		<header>
+			<h1 class="animate__animated animate__lightSpeedInRight">Leboncoin</h1>
+		</header>
+		<div class="annonce">
+				<h2>
+					{{annonce.title}}
+				</h2>
 			</a>
-		</p>
-		<p>
-			<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
-				<button class="green">Modifier</button>
-			</a>
-		</p>
-	{% endif %}
-	<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
-</div>{% endfor %}<div class="pagination">
-{{ knp_pagination_render(annonces) }}</div>{% endblock %}
+			<p>
+				{{annonce.content}}
+			</p>
+			<h3>
+				Posté le :
+				{{annonce.createdOn | date('d/m/Y h:i:s')}}
+			</h3>
+			Prix :
+			{{annonce.price}}€
+			<p>
+				Vendeur :
+				{% if annonce.author %}
+					{{annonce.author.username}}
+				</p>
+			{% endif %}
+			{% if app.user and app.user == annonce.author %}
+				<p>
+					<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
+						<button class="red">Supprimer</button>
+					</a>
+				</p>
+				<p>
+					<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
+						<button class="green">Modifier</button>
+					</a>
+				</p>
+			{% endif %}
+			<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
+		</div>
+	
+	{% endfor %}
+{% endblock %}

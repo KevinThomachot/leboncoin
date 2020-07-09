@@ -35,12 +35,12 @@ class LeboncoinController extends AbstractController
         $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
         $category = $categoryRepository->findAll();
 
-        $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 3);
+        $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 6);
 
-        return $this->render('leboncoin/index.html.twig',  ['annonces' => $annonces,
-        'categories' => $category
+        return $this->render('leboncoin/index.html.twig',  [
+            'annonces' => $annonces,
+            'categories' => $category
         ]);
-
     }
 
     /**
@@ -60,7 +60,7 @@ class LeboncoinController extends AbstractController
             ->add('content', TextareaType::class)
             ->add('price', MoneyType::class)
             ->add('photosFile', VichImageType::class, ['required' => false])
-            ->add ('captcha', CaptchaType:: class)
+            ->add('captcha', CaptchaType::class)
             ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
             ->getForm();
 
@@ -171,7 +171,7 @@ class LeboncoinController extends AbstractController
     /**
      * @Route("/category/{name}", name="leboncoin_category")
      */
-    public function category($name, CategoryRepository $categoryRepository, AnnoncesRepository $annonceRepository )
+    public function category($name, CategoryRepository $categoryRepository, AnnoncesRepository $annonceRepository)
     {
         $category = $categoryRepository->findOneBy(['name' => $name]);
 

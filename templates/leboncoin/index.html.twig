@@ -10,7 +10,7 @@
 </div>
 <h1 class="animate__animated animate__lightSpeedInRight">Leboncoin</h1>
 		{% for annonce in annonces %}
-			<div class="annonce">
+		<div class="annonce">
 				<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
 					<h2>
 						{{annonce.title}}
@@ -44,7 +44,7 @@
 					</p>
 				{% endif %}
 				<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
-			</div>
+				</div>
 		{% endfor %}
 		<div class="pagination">
 			{{ knp_pagination_render(annonces) }}</div>

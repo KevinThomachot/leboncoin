@@ -20,7 +20,7 @@ class CategoryFixtures extends Fixture{
         
         
         $categorieVetement = new Category();
-        $categorieVetement->setName("vetements");
+        $categorieVetement->setName("vetement");
 
         $this->addReference($categorieVetement->getName(), $categorieVetement);
         

@@ -3,10 +3,9 @@
 {% endblock %}
 
 {% block body %}
-	{% for annonce in annonces %}
 		<header>
 			<h1 class="animate__animated animate__lightSpeedInRight">Leboncoin</h1>
-		</header>
+	{% for annonce in annonces %}
 		<div class="annonce">
 				<h2>
 					{{annonce.title}}
@@ -41,6 +40,6 @@
 			{% endif %}
 			<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
 		</div>
-	
+		</header>
 	{% endfor %}
 {% endblock %}

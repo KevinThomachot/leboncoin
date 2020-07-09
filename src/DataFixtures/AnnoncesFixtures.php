@@ -11,7 +11,7 @@ class AnnoncesFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for ($i=1; $i <= 20; $i++){
+        for ($i=1; $i <= 25; $i++){
             $annonces = new Annonces();
             $annonces->setTitle('Test annonce #'.$i);
             $annonces->setContent(' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt nibh sed nisl dictum elementum. Nam eu tellus in nisl pharetra euismod non sed sapien. Proin aliquet justo at quam posuere, quis pulvinar nisl rutrum. Sed sed felis quis nunc dictum pretium. Morbi nisi nisi, vulputate vel fringilla at, finibus nec odio. Integer mollis, nulla vitae mollis malesuada, tortor arcu dignissim erat, finibus consequat dolor odio ut leo. Duis ultrices scelerisque scelerisque. Proin blandit nunc luctus, malesuada lorem nec, ullamcorper nunc.

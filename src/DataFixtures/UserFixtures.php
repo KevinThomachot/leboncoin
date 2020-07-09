@@ -28,7 +28,7 @@ class UserFixtures extends Fixture
     
         $manager->persist($admin);
 
-        for ($i = 1; $i <= 5; $i++){
+        for ($i = 1; $i <= 25; $i++){
             $user = new User();
             $user->setUsername('fake-user'.$i);
             $password = $this->encoder->encodePassword($user, 'fake-password'.$i);

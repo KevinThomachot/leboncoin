@@ -50,15 +50,12 @@ class LeboncoinController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
         $annonces = new Annonces();
-        $annonces->setCreatedOn(new \DateTime);
-        $user = $this->getUser();
-        $annonces->setAuthor($user);
 
         $form = $this->createFormBuilder($annonces)
             ->add('category', EntityType::class, ['class' => Category::class, 'choice_label' => 'name'])
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
-            ->add('price', MoneyType::class)
+            ->add('price', MoneyType::class , ['divisor' => 100])
             ->add('photosFile', VichImageType::class, ['required' => false])
             ->add('captcha', CaptchaType::class)
             ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])
@@ -67,6 +64,11 @@ class LeboncoinController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $annonces->setCreatedOn(new \DateTime);
+            $user = $this->getUser();
+            $annonces->setAuthor($user);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonces);
             $entityManager->flush();

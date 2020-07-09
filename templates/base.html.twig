@@ -9,6 +9,7 @@
 		</title>
 		{% block stylesheets %}{% endblock %}
 		{# <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}"> #}
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{asset('css/main.css')}}">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 	</head>
@@ -20,42 +21,44 @@
 			</div>
 
 		{% endfor %}
-
-
-		<nav>
-			<ul>
-				<li>
-					<a href="{{path('leboncoin_index')}}">Page d'accueil</a>
-				</li>
-				<li>
-					<a href="{{path('leboncoin_add')}}">Ecrire une annonce</a>
-				</li>
-				{% if app.user %}
-					<li>
-						<a href="{{path('leboncoin_compte', {'id' : app.user.id } )}}">Mon compte</a>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="btn btn-outline-info" href="{{path('leboncoin_index')}}" role="button">Leboncoin</a>
 					</li>
-					<li>
-						<a href="{{path('leboncoin_logout')}}">Déconnexion</a>
+					<li class="nav-item">
+						<a class="btn btn-outline-success" href="{{path('leboncoin_add')}}" role="button">Ecrire une annonce</a>
 					</li>
-					{% if is_granted('ROLE_ADMIN') %}
-						<li>
-							<a href="{{path('easyadmin')}}">Administration</a>
+					{% if app.user %}
+						<li class="nav-item">
+							<a class="btn btn-outline-info" href="{{path('leboncoin_compte', {'id' : app.user.id } )}}" role="button">Mon compte</a>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-outline-danger" href="{{path('leboncoin_logout')}}" role="button">Déconnexion</a>
+						</li>
+						{% if is_granted('ROLE_ADMIN') %}
+							<li class="nav-item">
+								<a class="btn btn-outline-danger" href="{{path('easyadmin')}}" role="button">Administration</a>
+							</li>
+						{% endif %}
+					{% else %}
+						<li class="nav-item">
+							<a class="btn btn-outline-success" href="{{path('leboncoin_register')}}" role="button">S'inscrire</a>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-outline-success" href="{{path('leboncoin_login')}}" role="button">Se connecter</a>
 						</li>
 					{% endif %}
-				{% else %}
-					<li>
-						<a href="{{path('leboncoin_register')}}">S'inscrire</a>
-					</li>
-					<li>
-						<a href="{{path('leboncoin_login')}}">Se connecter</a>
-					</li>
+				</ul>
+				{% if app.user %}
+					<div class="bienvenue">
+						{{app.user.username}}
+						<img src="{{asset('uploads/userPictures/') ~ app.user.avatar ?? 'default.png'}}" alt="user picture">
+					</div>
 				{% endif %}
-			</ul>
-		</nav>
-		{% if app.user %}
-			<div class="bienvenue">{{app.user.username}}</div>
-			<div class="image"><img src="{{asset('uploads/userPictures/') ~ app.user.avatar ?? 'default.png'}}" alt="user picture"></div>
-		{% endif %}
+			</nav>
+		</header>
 		{% block body %}{% endblock %}
 		{% block javascripts %}{% endblock %}
 	</body>

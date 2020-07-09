@@ -8,7 +8,6 @@
 <a href="{{ path('leboncoin_category', {'name' : category.name }) }}">{{category.name}}</a>
 {% endfor %}
 </div>
-<h1 class="animate__animated animate__lightSpeedInRight">Leboncoin</h1>
 		{% for annonce in annonces %}
 		<div class="annonce">
 				<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
@@ -49,4 +48,3 @@
 		<div class="pagination">
 			{{ knp_pagination_render(annonces) }}</div>
 	{% endblock %}
-

@@ -1,14 +1,11 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}
 	Ecrire une annonce
 {% endblock %}
-
 {% block body %}
-	<div class="titre">
-		<h1>
-			Ecrivez une annonce
-		</h1>
-	</div>
+	{% form_theme addForm 'bootstrap_4_layout.html.twig' %}
+    <div class="form_container">
+        {{form(addForm)}}
+    </div>
 	{{ form(addForm) }}{% endblock %}
 

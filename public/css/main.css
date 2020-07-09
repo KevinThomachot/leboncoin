@@ -1,7 +1,10 @@
-body {
+/*body {
     background-image: url(image.png);
     background-size: cover;
     background-repeat: no-repeat;
+}*/
+body {
+    background-color: grey;
 }
 
 .animate__animated {
@@ -20,16 +23,35 @@ body {
 h2 {
     text-align: center;
 }
+.navbar-expand-lg  {
 
-ul {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+
+}
+
+.navbar-nav {
     display: flex;
     justify-content: space-around;
-    list-style-type: none;
+    align-items: center;
+    width: 100%;
+}
+
+.bienvenue {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 5%;
+    height: 10%;
 }
 
 .categories {
     display: flex;
     justify-content: space-around;
+    color: white;
 }
 
 .titre {
@@ -41,6 +63,7 @@ ul {
     display: flex;
     justify-content: left;
     margin-top: 0%;
+    color: white;
 }
 
 .annonce {
@@ -49,18 +72,15 @@ ul {
     margin: 1%;
     padding: 4%;
     box-shadow: 10px 5px 5px black;
-    background-color: white;
-}
-
-.image {
-    display: flex;
-    justify-content: left;
-    width: 2.5%;
-    height: 2.5%;
-    margin-top: 0.5%;
+    background-color: rgb(241, 221, 221);
 }
 
 form {
     display: flex;
     justify-content: center;
+}
+
+.form_container {
+    width: 80%;
+    margin: auto;
 }

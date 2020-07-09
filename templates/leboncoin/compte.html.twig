@@ -6,14 +6,8 @@
 {% block body %}
 {{ form(compteForm) }}
 	<header>
-		<h1>
-			Modifiez votre compte
-		</h1>
-	</header>
-	<header>
 		<h1 class="animate__animated animate__backInLeft">Mes annonces
 		</h1>
-	</header>
 	{% for annonce in annonces %}
 		<div class="annonce">
 			<h2>
@@ -47,6 +41,7 @@
 				</p>
 				<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
 				</div>
+				</header>
 			{% endif %}
 		{% endfor %}
 	</p>{% endblock %}

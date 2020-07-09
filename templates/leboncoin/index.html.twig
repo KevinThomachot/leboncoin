@@ -3,48 +3,63 @@
 {% endblock %}
 
 {% block body %}
-<div class="categories">
-	{% for category in categories %}
-<a href="{{ path('leboncoin_category', {'name' : category.name }) }}">{{category.name}}</a>
-{% endfor %}
-</div>
-		{% for annonce in annonces %}
-		<div class="annonce">
-				<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
-					<h2>
-						{{annonce.title}}
-					</h2>
-				</a>
-				<p>
-					{{annonce.content}}
-				</p>
-				<h3>
-					Posté le :
-					{{annonce.createdOn | date('d/m/Y h:i:s')}}
-				</h3>
-				Prix :
-				{{annonce.price}}€
-				<p>
-					Vendeur :
-					{% if annonce.author %}
-						{{annonce.author.username}}
-					</p>
-				{% endif %}
-				{% if app.user and app.user == annonce.author %}
-					<p>
-						<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
-							<button class="red">Supprimer</button>
+	<div class="categories">
+		<div class="dropdown">
+			<a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Catégories
+			</a>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				{% for category in categories %}
+					<a class="dropdown-item" href="{{ path('leboncoin_category', {'name' : category.name }) }}">{{category.name}}</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	{# <a href="{{ path('leboncoin_category', {'name' : category.name }) }}">{{category.name}}</a> #}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				{% for annonce in annonces %}
+					<div class="annonce">
+						<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
+							<h2>
+								{{annonce.title}}
+							</h2>
 						</a>
-					</p>
-					<p>
-						<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
-							<button class="green">Modifier</button>
-						</a>
-					</p>
-				{% endif %}
-				<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
-				</div>
-		{% endfor %}
-		<div class="pagination">
-			{{ knp_pagination_render(annonces) }}</div>
-	{% endblock %}
+						<p>
+							{{annonce.content}}
+						</p>
+						<h3>
+							Posté le :
+							{{annonce.createdOn | date('d/m/Y h:i:s')}}
+						</h3>
+						Prix :
+						{{annonce.price}}€
+						<p>
+							Vendeur :
+							{% if annonce.author %}
+								{{annonce.author.username}}
+							</p>
+						{% endif %}
+						{% if app.user and app.user == annonce.author %}
+							<p>
+								<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
+									<button class="btn btn-danger">Supprimer</button>
+								</a>
+							</p>
+							<p>
+								<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
+									<button class="btn btn-success">Modifier</button>
+								</a>
+							</p>
+						{% endif %}
+						<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="pagination">
+		{{ knp_pagination_render(annonces) }}</div>
+{% endblock %}
+

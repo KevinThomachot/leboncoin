@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block body %}
-	<header>
-		<h1>
-			Modifiez votre annonce
-		</h1>
-	</header>
-	{{ form(editForm) }}{% endblock %}
+		{% form_theme editForm 'bootstrap_4_layout.html.twig' %}
+    <div class="form_container">
+        {{form(editForm)}}
+    </div>
+{% endblock %}

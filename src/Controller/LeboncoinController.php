@@ -55,7 +55,7 @@ class LeboncoinController extends AbstractController
             ->add('category', EntityType::class, ['class' => Category::class, 'choice_label' => 'name'])
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
-            ->add('price', MoneyType::class , ['divisor' => 100])
+            ->add('price', MoneyType::class, ['divisor' => 100])
             ->add('photosFile', VichImageType::class, ['required' => false])
             ->add('captcha', CaptchaType::class)
             ->add('submit', SubmitType::class, ['label' => 'Valider l\'annonce'])

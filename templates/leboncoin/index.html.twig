@@ -19,6 +19,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm">
+			{% for category in categories %}
 				{% for annonce in annonces %}
 					<div class="annonce">
 						<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}">
@@ -33,13 +34,19 @@
 							Posté le :
 							{{annonce.createdOn | date('d/m/Y h:i:s')}}
 						</h3>
+						<p>
 						Prix :
 						{{annonce.price}}€
+						</p>
 						<p>
 							Vendeur :
 							{% if annonce.author %}
 								{{annonce.author.username}}
 							</p>
+                        <p> 
+						Catégorie : 
+						{{category.name}}
+						</p>
 						{% endif %}
 						{% if app.user and app.user == annonce.author %}
 							<p>
@@ -55,6 +62,7 @@
 						{% endif %}
 						<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
 					</div>
+				{% endfor %}
 				{% endfor %}
 			</div>
 		</div>

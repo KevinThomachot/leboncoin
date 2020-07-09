@@ -116,6 +116,7 @@ class LeboncoinController extends AbstractController
         $annonce->setCreatedOn(new \DateTime);
 
         $form = $this->createFormBuilder($annonce)
+            ->add('category', EntityType::class, ['class' => Category::class, 'choice_label' => 'name'])
             ->add('title', TextType::class)
             ->add('content', TextareaType::class)
             ->add('price', MoneyType::class)

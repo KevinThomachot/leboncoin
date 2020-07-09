@@ -38,11 +38,11 @@
 							<a class="btn btn-outline-info" href="{{path('leboncoin_compte', {'id' : app.user.id } )}}" role="button">Mon compte</a>
 						</li>
 						<li class="nav-item">
-							<a class="btn btn-outline-danger" href="{{path('leboncoin_logout')}}" role="button">Déconnexion</a>
+							<a class="btn btn-outline-danger" href="{{path('easyadmin')}}" role="button">Administration</a>
 						</li>
 						{% if is_granted('ROLE_ADMIN') %}
 							<li class="nav-item">
-								<a class="btn btn-outline-danger" href="{{path('easyadmin')}}" role="button">Administration</a>
+								<a class="btn btn-outline-danger" href="{{path('leboncoin_logout')}}" role="button">Déconnexion</a>
 							</li>
 						{% endif %}
 					{% else %}

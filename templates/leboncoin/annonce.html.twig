@@ -4,41 +4,50 @@
 {% endblock %}
 
 {% block body %}
-	<header>
-		<h1 class="animate__animated animate__backInLeft">Mes annonces
-		</h1>
-	</header>
-	<div class="annonce">
-		<h2>
-			{{annonce.title}}
-		</h2>
-	</a>
-	<p>
-		{{annonce.content}}
-	</p>
-	<h3>
-		Posté le :
-		{{annonce.createdOn | date('d/m/Y h:i:s')}}
-	</h3>
-	Prix :
-	{{annonce.price}}€
-	<p>
-		Vendeur :
-		{% if annonce.author %}
-			{{annonce.author.username}}
-		{% endif %}
-		{% if app.user and app.user == annonce.author %}
-			<p>
-				<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
-					<button class="red">Supprimer</button>
-				</a>
-			</p>
-			<p>
-				<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
-					<button class="green">Modifier</button>
-				</a>
-			</p>
-		{% endif %}
-		<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
-	</p>
-</div>{% endblock %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+						<div class="card text-center">
+							<div class="card-header">
+								{{annonce.title}}
+							</div>
+							<p>
+							<div class="card-body">
+								<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}" class="btn btn-primary">Plus d'infos</a>
+								</p>
+							</a>
+							<p class="card-text">{{annonce.content}}</p>
+
+							Prix :
+							<h5 class="card-title">{{annonce.price}}€</h5>
+
+							Vendeur :
+							{% if annonce.author %}
+								<h5 class="card-title">{{annonce.author.username}}</h5>
+
+								Catégorie :
+								<h5 class="card-title">{{annonce.category.name}}</h5>
+
+							{% endif %}
+							{% if app.user and app.user == annonce.author %}
+								<p>
+									<a href="{{ path('leboncoin_delete', {'id' : annonce.id } ) }}">
+										<button class="btn btn-danger">Supprimer</button>
+									</a>
+								</p>
+								<p>
+									<a href="{{ path('leboncoin_edit', {'id' : annonce.id } ) }}">
+										<button class="btn btn-success">Modifier</button>
+									</a>
+								</p>
+							{% endif %}
+							<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
+						</div>
+						<div class="card-footer text-muted">
+							{{annonce.createdOn | date('d/m/Y h:i:s')}}
+						</div>
+					</div>		</div>
+	</div>
+</div>
+{% endblock %}
+

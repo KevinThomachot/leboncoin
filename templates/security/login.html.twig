@@ -5,6 +5,7 @@
 
 {% block body %}
 	<form method="post">
+	<div class="form-group">
 		{% if error %}
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
@@ -17,12 +18,12 @@
 			</div>
 		{% endif %}
 		<header>
-			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+			<h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
 		</header>
-		<label for="inputUsername">Username</label>
-		<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-		<label for="inputPassword">Password</label>
-		<input type="password" name="password" id="inputPassword" class="form-control" required>
+		<label for="inputUsername">Identifiant</label>
+		<input class="form-control" type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
+		<label for="inputPassword">Mot de passe</label>
+		<input class="form-control" type="password" name="password" id="inputPassword" class="form-control" required>
 		<input
 		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -38,11 +39,12 @@
 				    #}
 
 		<button class="btn btn-lg btn-primary" type="submit">
-			Sign in
+			Connexion
 		</button>
 		<li>
-			<a href="{{path('leboncoin_register')}}">Not registered ?</a>
+			<a href="{{path('leboncoin_register')}}">Pas encore inscrit ?</a>
 		</li>
 	</form>
+	</div>
 {% endblock %}
 

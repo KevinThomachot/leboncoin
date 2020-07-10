@@ -37,6 +37,7 @@ class LeboncoinController extends AbstractController
 
         $annonces = $paginator->paginate($annonces, $request->query->getInt('page', 1), 6);
 
+
         return $this->render('leboncoin/index.html.twig',  [
             'annonces' => $annonces,
             'categories' => $category
@@ -151,7 +152,7 @@ class LeboncoinController extends AbstractController
         $annonces = $annonceRepository->findBy(['author' => $user], ['created_on' => 'DESC']);
 
         $form = $this->createFormBuilder($user)
-            ->add('password', PasswordType::class, ['mapped' => false])
+            ->add('password', PasswordType::class, ['mapped' => false, 'label' => 'Mot de passe'])
             ->add('submit', SubmitType::class, ['label' => 'Editer votre mot de passe'])
             ->getForm();
 

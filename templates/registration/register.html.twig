@@ -7,12 +7,10 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <h1>Inscription</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username, {label: 'Nom d\'utilisateur'}) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot De Passe'
-        }) }}
-    {{ form_end(registrationForm) }}
+{% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+    <div class="form_container">
+        {{form(registrationForm)}}
+    </div>
 {% endblock %}

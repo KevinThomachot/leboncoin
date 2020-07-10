@@ -16,11 +16,12 @@
 		</div>
 	</div>
 	{# <a href="{{ path('leboncoin_category', {'name' : category.name }) }}">{{category.name}}</a> #}
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm">					{% for annonce in annonces %}
-						<div class="card text-center">
-							<div class="card-header">
+			<div class="col-sm">					
+			{% for annonce in annonces %}
+						<div class="card border-primary text-center bg-light mb-3">
+							<div class="card-header border-primary">
 								{{annonce.title}}
 							</div>
 							<p>
@@ -28,7 +29,6 @@
 								<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}" class="btn btn-primary">Plus d'infos</a>
 								</p>
 							</a>
-							<p class="card-text">{{annonce.content}}</p>
 
 							Prix :
 							<h5 class="card-title">{{annonce.price}}€</h5>
@@ -55,13 +55,14 @@
 							{% endif %}
 							<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
 						</div>
-						<div class="card-footer text-muted">
+						<div class="card-footer text-muted border-primary">
 							{{annonce.createdOn | date('d/m/Y h:i:s')}}
 						</div>
 					</div>
 				{% endfor %}		</div>
 	</div>
 </div>
-<div class="pagination">
-	{{ knp_pagination_render(annonces) }}</div>{% endblock %}
+<div class="pagination pagination-lg">
+<div class="page-item disabled">
+	{{ knp_pagination_render(annonces) }}</div></div>{% endblock %}
 

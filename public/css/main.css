@@ -23,6 +23,10 @@ body {
 h2 {
     text-align: center;
 }
+
+h1 {
+    text-align: center;
+}
 .fixed-top-navbar-expand-lg  {
 
     display: flex;
@@ -49,6 +53,7 @@ h2 {
 
 .categories {
     display: flex;
+    justify-content: center;
     margin: 1em;
 }
 

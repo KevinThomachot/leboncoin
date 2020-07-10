@@ -7,8 +7,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm">
-						<div class="card text-center">
-							<div class="card-header">
+						<div class="card border-primary text-center">
+							<div class="card-header border-primary">
 								{{annonce.title}}
 							</div>
 							<p>
@@ -43,7 +43,7 @@
 							{% endif %}
 							<img src="{{asset('uploads/annoncesPictures/') ~ annonce.photos ?? 'default.png'}}" alt="annonces picture">
 						</div>
-						<div class="card-footer text-muted">
+						<div class="card-footer text-muted border-primary">
 							{{annonce.createdOn | date('d/m/Y h:i:s')}}
 						</div>
 					</div>		</div>

@@ -40,7 +40,7 @@
 						<li class="nav-item">
 							<a class="btn btn-outline-danger" href="{{path('easyadmin')}}" role="button">Administration</a>
 						</li>
-						{% if is_granted('ROLE_ADMIN') %}
+						{% if is_granted('ROLE_USER') %}
 							<li class="nav-item">
 								<a class="btn btn-outline-danger" href="{{path('leboncoin_logout')}}" role="button">Déconnexion</a>
 							</li>

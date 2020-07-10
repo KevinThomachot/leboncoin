@@ -37,5 +37,5 @@ security:
         ROLE_ADMIN: ROLE_USER
         ROLE_SUPER_ADMIN : ROLE_ADMIN
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

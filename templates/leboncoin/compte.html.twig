@@ -4,22 +4,23 @@
 	Modifiez votre compte
 {% endblock %}
 {% block body %}
-{% form_theme compteForm 'bootstrap_4_layout.html.twig' %}
-    <div class="form_container">
-        {{form(compteForm)}}
-    </div>
-	<header>
-	{% for annonce in annonces %}
-		<div class="container">
-		<div class="row">
-			<div class="col-sm">
-						<div class="card border-primary text-center">
-							<div class="card-header border-primary">
-								{{annonce.title}}
-							</div>
-							<p>
-							<div class="card-body">
-								<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}" class="btn btn-primary">Plus d'infos</a>
+	{% form_theme compteForm 'bootstrap_4_layout.html.twig' %}
+	<div class="form_container">
+		{{form(compteForm)}}
+		</div>
+		<header>
+			{% for annonce in annonces %}
+				<div class="container">
+					<div class="row">
+						<div class="col-sm">
+							<div class="card border-primary text-center">
+								<div class="card-header border-primary">
+									{{annonce.title}}
+								</div>
+								<p>
+									<div class="card-body">
+										<a href="{{ path('leboncoin_annonce', {'id' : annonce.id }) }}" class="btn btn-primary">Plus d'infos</a>
+									</p>
 								</p>
 							</a>
 							<p class="card-text">{{annonce.content}}</p>
@@ -52,8 +53,10 @@
 						<div class="card-footer text-muted border-primary">
 							{{annonce.createdOn | date('d/m/Y h:i:s')}}
 						</div>
-					</div>		</div>
-	</div>
-</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	{% endfor %}
 {% endblock %}
+

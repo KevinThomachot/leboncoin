@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  * @Vich\Uploadable
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -219,5 +219,21 @@ class User implements UserInterface
         $this->updateOn = $updateOn;
 
         return $this;
+    }
+
+    public function serialize(){
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->password
+        ]);
+    }
+
+    public function unserialize($serialized){
+        list(
+            $this->id,
+            $this->username,
+            $this->password,
+        ) = unserialize($serialized);
     }
 }
